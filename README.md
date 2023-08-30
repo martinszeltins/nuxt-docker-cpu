@@ -1,6 +1,10 @@
 ### Instructions
 
 ```bash
+# Clone the repo
+git clone https://github.com/martinszeltins/nuxt-docker-cpu.git
+cd nuxt-docker-cpu
+
 # Run the Docker container
 docker-compose up -d
 docker-compose logs --follow
