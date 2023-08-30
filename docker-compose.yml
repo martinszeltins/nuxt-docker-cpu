@@ -1,0 +1,26 @@
+version: '3.7'
+
+services:
+
+  # Client / Vue (Main App Frontend)
+  nuxt-docker-client:
+    container_name: nuxt-docker-client
+    restart: unless-stopped
+    build: ./docker/containers/client
+    stdin_open: true                # Needed for HMR
+    environment:
+      - CHOKIDAR_USEPOLLING=true    # Needed for HMR
+    ports:
+      - "42152:3000"                # Development server
+      - "41002:3001"                # Production build
+      - "21750:24678"               # HMR Vite / Nuxt Port
+    volumes:
+      - ./app:/var/www
+    networks:
+      - nuxt-docker
+
+
+# Networks
+networks:
+  nuxt-docker:
+    driver: bridge
